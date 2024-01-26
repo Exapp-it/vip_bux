@@ -1,17 +1,14 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import vue from '@vitejs/plugin-vue'; 
- 
+import vue from '@vitejs/plugin-vue';
+
 export default defineConfig({
     plugins: [
         laravel({
-            input: [
-                'resources/css/app.css',
-                'resources/js/app.js',
-            ],
+            input: ['resources/js/app.js'],
             refresh: true,
         }),
-        vue({ 
+        vue({
             template: {
                 transformAssetUrls: {
                     base: null,
@@ -20,9 +17,10 @@ export default defineConfig({
             },
         }),
     ],
-    resolve: { 
+    resolve: {
         alias: {
             '@': '/resources/js',
+            'ziggy-js': '/vendor/tightenco/ziggy/dist/vue.es.js',
         },
     },
 });

@@ -1,0 +1,49 @@
+<script>
+import { ref, onMounted, onBeforeUnmount } from "vue";
+
+export default {
+    props: {
+        modalType: String,
+        showModal: Boolean,
+    },
+    setup(_, { emit }) {
+        const closeModal = () => {
+            emit("close");
+        };
+
+        return { closeModal };
+    },
+};
+</script>
+
+<template>
+    <transition name="fade">
+        <div
+            v-if="showModal"
+            @click.away="closeModal"
+            class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75"
+        >
+            <div
+                class="bg-gold-4 border border-red-500 p-8 rounded shadow-2xl"
+                @click.stop
+            >
+                <slot />
+            </div>
+        </div>
+    </transition>
+</template>
+
+<style scoped>
+/* Стили для модального окна */
+
+/* Анимации для Transition */
+.fade-enter-active,
+.fade-leave-active {
+    transition: all 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+</style>

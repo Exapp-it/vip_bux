@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .main-container {
+      @apply container max-w-[1170px];
+    }
+  
+    .gradient-gold {
+      @apply bg-gradient-to-r from-gold-1 via-gold-2 to-gold-4;
+    }
+  }
+
+  
