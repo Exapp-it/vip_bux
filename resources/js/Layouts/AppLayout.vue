@@ -1,49 +1,34 @@
-<script>
+<script setup>
 import { ref } from "vue";
 import Header from "../Components/Header.vue";
 import Footer from "../Components/Footer.vue";
 import Modal from "../Components/UI/Modal.vue";
-export default {
-    components: {
-        Header,
-        Footer,
-        Modal,
-    },
-    setup() {
-        const showLoginModal = ref(false);
-        const showRegisterModal = ref(false);
 
-        const openModal = (modalType) => {
-            if (modalType === "login") {
-                showLoginModal.value = true;
-            } else if (modalType === "register") {
-                showRegisterModal.value = true;
-            }
-        };
+const showLoginModal = ref(false);
+const showRegisterModal = ref(false);
 
-        const closeLoginModal = () => {
-            showLoginModal.value = false;
-        };
 
-        const closeRegisterModal = () => {
-            showRegisterModal.value = false;
-        };
+const openModal = (modalType) => {
+    if (modalType === "login") {
+        showLoginModal.value = true;
+    } else if (modalType === "register") {
+        showRegisterModal.value = true;
+    }
+};
 
-        return {
-            showLoginModal,
-            showRegisterModal,
-            openModal,
-            closeLoginModal,
-            closeRegisterModal,
-        };
-    },
+const closeLoginModal = () => {
+    showLoginModal.value = false;
+};
+
+const closeRegisterModal = () => {
+    showRegisterModal.value = false;
 };
 </script>
 
 <template>
     <Header :open-modal="openModal" />
 
-    <main>
+    <main class="min-h-[100vh]">
         <slot />
     </main>
     <Footer />

@@ -1,14 +1,9 @@
-<script>
+<script setup>
 import { Link } from "@inertiajs/vue3";
 
-export default {
-    components: {
-        Link,
-    },
-    props: {
-      openModal: Function
-    }
-};
+defineProps({
+    openModal: Function,
+});
 </script>
 
 <template>

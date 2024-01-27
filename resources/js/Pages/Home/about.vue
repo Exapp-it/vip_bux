@@ -1,26 +1,19 @@
-<script>
-import { ref } from 'vue';
+<script setup>
+import { ref } from "vue";
 
+defineProps({
+  title: String
+})
 
-export default {
-  props: {
-    title: String
-  },
-  setup() {
-    // Используем setup для определения состояния компонента
-    const message = ref('Привет, мир!');
-    const description = ref('Это пример Vue-компонента.');
+const message = ref("Привет, мир!");
+const description = ref("Это пример Vue-компонента.");
 
-    return { message, description };
-  },
-};
 </script>
-  
-<template>
-  <Head :title="title" />
-  <div>
-    <h1>{{ message }}</h1>
-    <p>{{ description }}</p>
-  </div>
-</template>
 
+<template>
+    <Head :title="title" />
+    <div class="main-container py-10 text-white">
+        <h1>{{ message }}</h1>
+        <p>{{ description }}</p>
+    </div>
+</template>

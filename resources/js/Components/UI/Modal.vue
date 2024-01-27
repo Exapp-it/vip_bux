@@ -1,18 +1,9 @@
-<script>
-import { ref, onMounted, onBeforeUnmount } from "vue";
+<script setup>
+const { modalType, showModal } = defineProps(["modalType", "showModal"]);
+const  emit  = defineEmits();
 
-export default {
-    props: {
-        modalType: String,
-        showModal: Boolean,
-    },
-    setup(_, { emit }) {
-        const closeModal = () => {
-            emit("close");
-        };
-
-        return { closeModal };
-    },
+const closeModal = () => {
+    emit("close");
 };
 </script>
 
