@@ -15,7 +15,7 @@ const closeModal = () => {
             class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75"
         >
             <div
-                class="bg-gold-4 border border-red-500 p-8 rounded shadow-2xl"
+                class="gradient-gold w-1/3 border-red-500 p-8 rounded shadow-2xl"
                 @click.stop
             >
                 <slot />
@@ -25,9 +25,6 @@ const closeModal = () => {
 </template>
 
 <style scoped>
-/* Стили для модального окна */
-
-/* Анимации для Transition */
 .fade-enter-active,
 .fade-leave-active {
     transition: all 0.5s ease;

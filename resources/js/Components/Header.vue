@@ -1,5 +1,6 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
+import MainLogo from "./MainLogo.vue";
 
 defineProps({
     openModal: Function,
@@ -10,12 +11,7 @@ defineProps({
     <header class="gradient-gold">
         <div class="main-container">
             <div class="flex items-center justify-between h-20">
-                <div class="w-48">
-                    <Link :href="route('home.index')">
-                        <img src="/storage/assets/images/logo.png" alt="LOGO" />
-                    </Link>
-                </div>
-
+                <MainLogo />
                 <div class="flex items-center space-x-4">
                     <nav class="sm:hidden">
                         <ul class="flex items-center gap-6 text-sm">
