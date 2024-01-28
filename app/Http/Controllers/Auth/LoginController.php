@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -22,11 +21,15 @@ class LoginController extends Controller
         ->route('home.index')
         ->with([
           'message' => 'Неверные учетные данные',
-          'success' => false,
+          'status' => 'error',
         ]);
     }
 
     return redirect()
-      ->route('user.index');
+      ->route('user.index')
+      ->with([
+        'message' => 'Успешная авторизация',
+        'status' => 'success',
+      ]);
   }
 }
