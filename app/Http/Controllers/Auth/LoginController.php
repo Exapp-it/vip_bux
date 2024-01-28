@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -17,19 +18,22 @@ class LoginController extends Controller
 
 
     if (!Auth::attempt($credentials, $request->has('remember'))) {
-      return redirect()
-        ->route('home.index')
+      return Redirect::route('home.index')
         ->with([
           'message' => 'Неверные учетные данные',
           'status' => 'error',
         ]);
     }
 
-    return redirect()
-      ->route('user.index')
-      ->with([
-        'message' => 'Успешная авторизация',
-        'status' => 'success',
-      ]);
+    return Redirect::route('user.index');
+  }
+
+  public function logout(Request $request)
+  {
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return Redirect::route('home.index');
   }
 }

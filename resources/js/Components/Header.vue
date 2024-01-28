@@ -19,7 +19,7 @@ defineProps({
                         <ul class="flex items-center gap-6 text-sm">
                             <li>
                                 <span
-                                    v-if="user === null"
+                                    v-if="!user"
                                     @click="openModal('register')"
                                     class="border border-gray-800 px-2 py-2 hover:shadow-2xl text-gray-800 cursor-pointer transition hover:text-white"
                                 >
@@ -83,7 +83,7 @@ defineProps({
                     <div class="flex items-center gap-4 pl-5">
                         <div class="flex gap-4">
                             <span
-                                v-if="user === null"
+                                v-if="!user"
                                 @click="openModal('login')"
                                 class="block rounded-md px-5 py-2.5 text-sm font-medium cursor-pointer text-gray-700 transition"
                             >

@@ -1,7 +1,7 @@
 <script setup>
 import IconFail from "./Icons/Iconfail.vue";
 import IconSuccess from "./Icons/IconSuccess.vue";
-import { ref, watch, onUnmounted, onMounted } from "vue";
+import { ref } from "vue";
 
 defineProps({
     message: {
@@ -19,12 +19,10 @@ const openAlert = ref(true);
 const closeAlert = () => {
     openAlert.value = false;
 };
-
-
 </script>
 
 <template>
-    <div v-if="openAlert" class="fixed top-4 right-4 z-10 flex w-full max-w-sm">
+    <div v-if="openAlert" class="fixed top-4 right-0 z-10 flex w-full max-w-sm">
         <div
             v-if="message"
             class="flex overflow-hidden bg-white rounded-lg shadow-md"
@@ -37,7 +35,13 @@ const closeAlert = () => {
                 class="w-2"
             ></div>
 
-            <div class="flex items-center px-2 py-3 text-red-600">
+            <div
+                :class="{
+                    'text-red-600': status === 'error',
+                    'text-green-600': status === 'success',
+                }"
+                class="flex items-center px-2 py-3"
+            >
                 <IconFail v-if="status === 'error'" />
                 <IconSuccess v-else-if="status === 'success'" />
 
@@ -52,7 +56,7 @@ const closeAlert = () => {
                     </p>
                 </div>
                 <button
-                    class="bg-transparent text-2xl font-semibold leading-none outline-none focus:outline-none"
+                    class="bg-transparent text-2xl mb-1 font-semibold leading-none outline-none focus:outline-none"
                     @click="closeAlert()"
                 >
                     <span>×</span>

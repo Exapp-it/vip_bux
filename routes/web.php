@@ -11,5 +11,11 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('about', [HomeController::class, 'about'])->name('home.about');
 
 //Auth
-Route::post('register', [RegisterController::class, 'store'])->name('register.store');
-Route::post('login', [LoginController::class, 'store'])->name('login.store');
+Route::middleware('guest')->group(function () {
+  Route::post('register', [RegisterController::class, 'store'])->name('register.store');
+  Route::post('login', [LoginController::class, 'store'])->name('login.store');
+});
+
+Route::middleware('auth')->group(function () {
+  Route::delete('user/logout', [LoginController::class, 'logout'])->name('user.logout');
+});

@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Enums\UserRoles;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration {
   /**
@@ -14,18 +15,20 @@ return new class extends Migration {
       $table->id();
       $table->string('login');
       $table->string('email')->unique();
-      $table->unsignedBigInteger('ref')->nullable();
+      $table->integer('pin_code')->nullable();
+      $table->string('auth_code')->nullable();
       $table->boolean('active')->default(true);
-      $table->enum('role', ['admin', 'user', 'manager'])->default('user');
+      $table->enum('role', [UserRoles::Admin, UserRoles::User, UserRoles::Manager, UserRoles::Moderator])->default(UserRoles::User);
+      $table->ipAddress('ip')->nullable();
       $table->timestamp('email_verified_at')->nullable();
       $table->string('password');
       $table->rememberToken();
       $table->timestamps();
 
-      $table->foreign('ref')
-        ->references('id')
-        ->on('users')
-        ->onDelete('set null');
+      $table->index('login');
+      $table->index('email');
+      $table->index('role');
+      
 
     });
   }
