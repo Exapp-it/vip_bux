@@ -15,6 +15,11 @@ return new class extends Migration {
       $table->id();
       $table->string('login');
       $table->string('email')->unique();
+      $table->decimal('experience_points', 8, 2)->default(0);
+      $table->unsignedBigInteger('status')->default(1);
+      $table->foreignId('ref_level_1')->nullable()->constrained('users')->onDelete('set null');
+      $table->foreignId('ref_level_2')->nullable()->constrained('users')->onDelete('set null');
+      $table->foreignId('ref_level_3')->nullable()->constrained('users')->onDelete('set null');
       $table->integer('pin_code')->nullable();
       $table->string('auth_code')->nullable();
       $table->boolean('active')->default(true);
@@ -28,10 +33,16 @@ return new class extends Migration {
       $table->index('login');
       $table->index('email');
       $table->index('role');
-      
+      $table->index('ref_level_1');
+      $table->index('ref_level_2');
+      $table->index('ref_level_3');
+
+
+
 
     });
   }
+
 
   /**
    * Reverse the migrations.

@@ -20,6 +20,10 @@ class User extends Authenticatable
   protected $fillable = [
     'login',
     'email',
+    'ref_level_1',
+    'ref_level_2',
+    'ref_level_3',
+    'pin_code',
     'auth_code',
     'active',
     'role',
@@ -43,14 +47,39 @@ class User extends Authenticatable
    * @var array<string, string>
    */
   protected $casts = [
-    'status' => 'boolean',
     'email_verified_at' => 'datetime',
     'password' => 'hashed',
   ];
 
-  public function referrer()
+
+  public function referrerLevel1()
   {
-    return $this->belongsTo(User::class, 'ref');
+      return $this->belongsTo(User::class, 'ref_level_1');
+  }
+
+  public function referrerLevel2()
+  {
+      return $this->belongsTo(User::class, 'ref_level_2');
+  }
+
+  public function referrerLevel3()
+  {
+      return $this->belongsTo(User::class, 'ref_level_3');
+  }
+
+  public function referralsLevel1()
+  {
+      return $this->hasMany(User::class, 'ref_level_1');
+  }
+
+  public function referralsLevel2()
+  {
+      return $this->hasMany(User::class, 'ref_level_2');
+  }
+
+  public function referralsLevel3()
+  {
+      return $this->hasMany(User::class, 'ref_level_3');
   }
 
 }
