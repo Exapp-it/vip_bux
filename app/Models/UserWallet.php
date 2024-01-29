@@ -7,5 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserWallet extends Model
 {
-    use HasFactory;
+  use HasFactory;
+
+  public $timestamps = false;
+
+
+  protected $fillable = [
+    'user_id',
+    'balance',
+    'account',
+    'withdrawal_limit',
+  ];
 }

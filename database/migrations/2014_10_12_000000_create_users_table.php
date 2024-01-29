@@ -20,6 +20,7 @@ return new class extends Migration {
       $table->foreignId('ref_level_1')->nullable()->constrained('users')->onDelete('set null');
       $table->foreignId('ref_level_2')->nullable()->constrained('users')->onDelete('set null');
       $table->foreignId('ref_level_3')->nullable()->constrained('users')->onDelete('set null');
+      $table->string('ref_code')->unique();
       $table->integer('pin_code')->nullable();
       $table->string('auth_code')->nullable();
       $table->boolean('active')->default(true);
@@ -36,6 +37,7 @@ return new class extends Migration {
       $table->index('ref_level_1');
       $table->index('ref_level_2');
       $table->index('ref_level_3');
+      $table->index('ref_code');
 
 
 

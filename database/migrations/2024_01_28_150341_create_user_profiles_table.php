@@ -15,8 +15,8 @@ return new class extends Migration {
     Schema::create('user_profiles', function (Blueprint $table) {
       $table->id();
       $table->unsignedBigInteger('user_id');
-      $table->string('name')->nullable;
-      $table->string('lastname')->nullable;
+      $table->string('name')->nullable();
+      $table->string('lastname')->nullable();
       $table->date('birthday')->nullable();
       $table->enum('gender', [UserGender::Male, UserGender::Female])->nullable();
       $table->enum('occupation', [
@@ -33,10 +33,10 @@ return new class extends Migration {
       $table->string('city')->nullable();
 
       $table->foreign('user_id')
-      ->references('id')
-      ->on('users')
-      ->onDelete('cascade');
-      
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade');
+
     });
   }
 

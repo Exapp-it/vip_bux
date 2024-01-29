@@ -7,5 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserContact extends Model
 {
-    use HasFactory;
+  use HasFactory;
+
+  public $timestamps = false;
+
+
+  protected $fillable = [
+    'user_id',
+    'phone',
+    'vk',
+    'telegram',
+    'instagram',
+    'youtube',
+  ];
 }

@@ -14,11 +14,11 @@ return new class extends Migration {
       $table->id();
       $table->unsignedBigInteger('user_id');
       $table->decimal('balance', 8, 2)->default(0);
-      $table->string('account_number');
-      $table->decimal('withdrawal_limit', 8, 0);
+      $table->string('account');
+      $table->decimal('withdrawal_limit', 8, 0)->nullable();
 
       $table->index('user_id');
-      $table->index('account_number');
+      $table->index('account');
 
       $table->foreign('user_id')
         ->references('id')
