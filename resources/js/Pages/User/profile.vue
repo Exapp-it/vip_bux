@@ -1,13 +1,14 @@
 <script setup>
-import { ref } from "vue";
-import { usePage } from "@inertiajs/vue3";
 import UserLayout from "../../Layouts/UserLayout.vue";
 
 defineProps({
     title: String,
 });
 
+
 </script>
+
+
 
 <template>
     <Head :title="title" />

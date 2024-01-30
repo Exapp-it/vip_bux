@@ -48,7 +48,7 @@ class UserService
   {
     UserWallet::create([
       'user_id' => $user->id,
-      'account' => $this->generateWalletAccount(),
+      'account' => $this->generateWalletAccount('VP'),
     ]);
   }
 

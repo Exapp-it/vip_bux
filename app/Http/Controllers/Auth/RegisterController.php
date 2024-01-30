@@ -12,19 +12,14 @@ use Illuminate\Support\Facades\Redirect;
 
 class RegisterController extends Controller
 {
-  protected $userService;
 
-  public function __construct(UserService $userService)
-  {
-    $this->userService = $userService;
-  }
 
-  public function store(Request $request)
+  public function store(Request $request, UserService $userService)
   {
     $this->validateUser($request);
 
     try {
-      $user = $this->userService->registerUser($request->only(['login', 'email', 'password']));
+      $user = $userService->registerUser($request->only(['login', 'email', 'password']));
       event(new Registered($user));
       Auth::login($user);
     } catch (\Exception $e) {

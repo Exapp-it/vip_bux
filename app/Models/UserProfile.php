@@ -23,4 +23,9 @@ class UserProfile extends Model
     'region',
     'city',
   ];
+
+  public function user()
+  {
+    return $this->belongsTo(User::class, 'user_id');
+  }
 }

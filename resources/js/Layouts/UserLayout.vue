@@ -7,6 +7,7 @@ import Alert from "../Components/UI/Alert.vue";
 import UserHeader from "../Components/UserHeader.vue";
 
 const page = usePage();
+const user = page.props.user.data;
 </script>
 
 <template>
@@ -15,8 +16,8 @@ const page = usePage();
             :message="page.props.flash.message"
             :status="page.props.flash.status"
         />
-        <UserHeader />
-        <div class="main-container flex  gradient-gold my-2 py-2 rounded-lg">
+        <UserHeader :user="user" />
+        <div class="main-container flex gradient-gold my-2 py-2 rounded-lg">
             <Sidebar />
 
             <main class="p-2">

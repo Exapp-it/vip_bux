@@ -8,6 +8,6 @@ defineProps(["icon", "text"]);
     >
         <i :class="icon"></i>
         <span class="text-[15px] ml-4 text-gray-900 font-bold">{{ text }}</span>
-        <span class="rounded-full bg-green-600 px-2 ml-auto">1</span>
+        <!-- <span class="rounded-full bg-green-600 px-2 ml-auto">1</span> -->
     </div>
 </template>

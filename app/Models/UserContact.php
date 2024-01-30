@@ -20,4 +20,9 @@ class UserContact extends Model
     'instagram',
     'youtube',
   ];
+
+  public function user()
+  {
+    return $this->belongsTo(User::class, 'user_id');
+  }
 }

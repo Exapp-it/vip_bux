@@ -1,10 +1,11 @@
 <script setup>
-import { usePage, router } from "@inertiajs/vue3";
+import { Link, router } from "@inertiajs/vue3";
 import MainLogo from "./MainLogo.vue";
 import { ref } from "vue";
 
-const page = usePage();
-const user = page.props.user.data;
+const { user } = defineProps(["user"]);
+
+console.log(user);
 
 const userDropdown = ref(false);
 
@@ -35,7 +36,21 @@ const logout = () => {
         <div class="main-container">
             <div class="flex items-center justify-between h-20">
                 <MainLogo />
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-1">
+                    <div class="flex items-center pl-5">
+                        <Link
+                            :href="route('user.index')"
+                            class="flex group items-center space-x-4 border border-green-600 rounded-full px-2 py-2 hover:shadow-2xl transition duration-300"
+                        >
+                            <i
+                                class="bi bi-wallet-fill  text-green-600 text-xl group-hover:rotate-180 transition duration-300"
+                            ></i>
+                            <span class="text-gray-700 font-semibold transition duration-300"
+                                >{{ user.wallet.balance }}
+                                <span class="text-green-600 font-extrabold">&#x20bd;</span>
+                            </span>
+                        </Link>
+                    </div>
                     <div class="flex items-center gap-4 pl-5">
                         <div class="flex justify-center items-center">
                             <div
@@ -48,10 +63,10 @@ const logout = () => {
                                 <div
                                     @mouseover="openUserDropdown"
                                     @mouseout="closeUserDropdown"
-                                    class="flex justify-center items-center space-x-3 cursor-pointer"
+                                    class="flex group justify-center items-center space-x-3 cursor-pointer"
                                 >
                                     <div
-                                        class="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-900"
+                                        class="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-900 group-hover:scale-110 transition duration-300"
                                     >
                                         <img
                                             src="https://i.pravatar.cc/150?img=3"
@@ -60,7 +75,7 @@ const logout = () => {
                                         />
                                     </div>
                                     <div
-                                        class="font-semibold text-gray-900 text-lg"
+                                        class="font-semibold text-gray-900 text-lg group-hover:scale-90 transition duration-300"
                                     >
                                         <div class="cursor-pointer">
                                             {{ user.login }}
@@ -75,80 +90,41 @@ const logout = () => {
                                 >
                                     <ul class="space-y-3">
                                         <li class="font-medium">
-                                            <a
-                                                href="#"
-                                                class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-stone-900"
+                                            <Link
+                                                :href="route('user.profile')"
+                                                class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-stone-900 hover:text-gray-600"
                                             >
                                                 <div class="mr-3">
-                                                    <svg
-                                                        class="w-6 h-6"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        viewBox="0 0 24 24"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round"
-                                                            stroke-width="2"
-                                                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                                                        ></path>
-                                                    </svg>
+                                                    <i
+                                                        class="bi bi-person-bounding-box text-xl"
+                                                    ></i>
                                                 </div>
-                                                Account
-                                            </a>
+                                                Профиль
+                                            </Link>
                                         </li>
                                         <li class="font-medium">
                                             <a
                                                 href="#"
-                                                class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-stone-900"
+                                                class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-stone-900 hover:text-gray-600"
                                             >
                                                 <div class="mr-3">
-                                                    <svg
-                                                        class="w-6 h-6"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        viewBox="0 0 24 24"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round"
-                                                            stroke-width="2"
-                                                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                                                        ></path>
-                                                        <path
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round"
-                                                            stroke-width="2"
-                                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                                        ></path>
-                                                    </svg>
+                                                    <i
+                                                        class="bi bi-gear-wide text-xl"
+                                                    ></i>
                                                 </div>
-                                                Setting
+                                                Настройки
                                             </a>
                                         </li>
                                         <hr class="border-red-600" />
                                         <li class="font-medium">
                                             <span
                                                 @click="logout"
-                                                class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-red-600 cursor-pointer"
+                                                class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-red-600 hover:text-gray-600 cursor-pointer"
                                             >
                                                 <div class="mr-3 text-red-600">
-                                                    <svg
-                                                        class="w-6 h-6"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        viewBox="0 0 24 24"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round"
-                                                            stroke-width="2"
-                                                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                                                        ></path>
-                                                    </svg>
+                                                    <i
+                                                        class="bi bi-box-arrow-left text-red-600 text-xl"
+                                                    ></i>
                                                 </div>
                                                 Выйти
                                             </span>

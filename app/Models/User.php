@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\UserWallet;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -55,32 +56,46 @@ class User extends Authenticatable implements MustVerifyEmail
 
   public function referrerLevel1()
   {
-      return $this->belongsTo(User::class, 'ref_level_1');
+    return $this->belongsTo(User::class, 'ref_level_1');
   }
 
   public function referrerLevel2()
   {
-      return $this->belongsTo(User::class, 'ref_level_2');
+    return $this->belongsTo(User::class, 'ref_level_2');
   }
 
   public function referrerLevel3()
   {
-      return $this->belongsTo(User::class, 'ref_level_3');
+    return $this->belongsTo(User::class, 'ref_level_3');
   }
 
   public function referralsLevel1()
   {
-      return $this->hasMany(User::class, 'ref_level_1');
+    return $this->hasMany(User::class, 'ref_level_1');
   }
 
   public function referralsLevel2()
   {
-      return $this->hasMany(User::class, 'ref_level_2');
+    return $this->hasMany(User::class, 'ref_level_2');
   }
 
   public function referralsLevel3()
   {
-      return $this->hasMany(User::class, 'ref_level_3');
+    return $this->hasMany(User::class, 'ref_level_3');
   }
 
+  public function wallet()
+  {
+    return $this->hasOne(UserWallet::class, 'user_id');
+  }
+
+  public function profile()
+  {
+    return $this->hasOne(UserProfile::class, 'user_id');
+  }
+
+  public function contact()
+  {
+    return $this->hasOne(UserContact::class, 'user_id');
+  }
 }
