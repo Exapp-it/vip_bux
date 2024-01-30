@@ -35,5 +35,8 @@ return [
     'token' => env('IPINFO_API_TOKEN'),
   ],
 
+  'google_recaptcha' => [
+    'secret' => env('GOOGLE_RECAPTCHA_SECRET'),
+  ],
 
 ];

@@ -22,6 +22,15 @@ class UserProfile extends Model
     'country',
     'region',
     'city',
+    'email_verified',
+    'phone_verified',
+    'telegram_verified',
+  ];
+
+  protected $casts = [
+    'email_verified' => 'boolean',
+    'phone_verified' => 'boolean',
+    'telegram_verified' => 'boolean',
   ];
 
   public function user()

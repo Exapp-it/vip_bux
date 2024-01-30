@@ -17,8 +17,9 @@ class UserResource extends JsonResource
   {
     return [
       'login' => $this->login,
-      'email' => $this->email,
       'wallet' => new WalletResource($this->wallet),
+      'profile' => new ProfileResource($this->profile),
+      'contact' => new ContactResource($this->contact),
       'created_at' => $this->created_at->format('Y-m-d H:i:s'),
       'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
     ];
