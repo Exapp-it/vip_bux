@@ -4,7 +4,7 @@ set -e
 
 git pull origin production
 php artisan down
-php artisan composer --no-dev --optimize-autoloader
+php composer --no-dev --optimize-autoloader
 php artisan migrate --force
 php artisan config:cache
 php artisan view:cache
