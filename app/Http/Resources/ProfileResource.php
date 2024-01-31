@@ -18,7 +18,7 @@ class ProfileResource extends JsonResource
       'name' => $this->name,
       'lastname' => $this->lastname,
       'birthday' => $this->birthday,
-      'gender' => $this->gender,
+      'gender' => $this->gender_readable,
       'occupation' => $this->occupation,
       'country' => $this->country,
       'region' => $this->region,

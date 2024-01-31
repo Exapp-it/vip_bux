@@ -5,7 +5,6 @@ import { ref } from "vue";
 
 const { user } = defineProps(["user"]);
 
-console.log(user);
 
 const userDropdown = ref(false);
 
@@ -135,7 +134,7 @@ const logout = () => {
                         </div>
 
                         <button
-                            class="rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 sm:block hidden"
+                            class="rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 lg:hidden block"
                         >
                             <span class="sr-only">Toggle menu</span>
                             <svg

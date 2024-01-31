@@ -11,9 +11,9 @@ export default {
       padding: '1rem',
     },
     screens: {
-      lg: { max: "1023px" },
-      md: { max: "767px" },
-      sm: { max: "639px" },
+      lg: { min: "1023px" },
+      md: { min: "767px" },
+      sm: { min: "639px" },
     },
     extend: {
       colors: {

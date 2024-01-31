@@ -26,4 +26,18 @@ class UserWallet extends Model
     return $this->belongsTo(User::class, 'user_id');
   }
 
+  public static function generateAccount($prefix = '', $suffix = '', $length = 8)
+  {
+    $baseValue = (string) (now()->timestamp * 1000);
+    $randomDigits = random_int(1000, 9999);
+
+    $baseValueString = (string) $baseValue;
+    $shuffledBaseValueString = str_shuffle($baseValueString);
+    $suffix = str_shuffle($suffix);
+
+    $uniqueId = substr($shuffledBaseValueString + $randomDigits, 0, $length);
+
+    return $prefix . $uniqueId . $suffix;
+  }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\UserStatus;
 use App\Models\UserWallet;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -98,4 +99,32 @@ class User extends Authenticatable implements MustVerifyEmail
   {
     return $this->hasOne(UserContact::class, 'user_id');
   }
+
+  public function getStatusReadableAttribute()
+  {
+    switch ($this->status) {
+      case UserStatus::Newcomer:
+        return __('Новичок');
+      case UserStatus::Student:
+        return __('Студент');
+      case UserStatus::Experienced:
+        return __('Опытный');
+      case UserStatus::Advanced:
+        return __('Продвинутый');
+      case UserStatus::Activist:
+        return __('Активист');
+      case UserStatus::Specialist:
+        return __('Специалист');
+      case UserStatus::Expert:
+        return __('Эксперт');
+      case UserStatus::Master:
+        return __('Мастер');
+      case UserStatus::Grandmaster:
+        return __('Гранд-мастер');
+
+      default:
+        return __('Новичок');
+    }
+  }
+
 }

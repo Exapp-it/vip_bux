@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 if (!function_exists('getRequestIp')) {
   function getRequestIp()
   {
@@ -11,5 +13,16 @@ if (!function_exists('getRequestIp')) {
 
     return $ip;
   }
+
+
+  if (!function_exists('formatDate')) {
+    function formatDate($date)
+    {
+      Carbon::setLocale('ru');
+      $parsedDate = Carbon::parse($date);
+        return $parsedDate->isoFormat('DD MMM, в HH:mm');
+    }
+  }
+
 
 }

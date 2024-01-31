@@ -3,28 +3,34 @@
 namespace App\Services;
 
 use App\Models\User;
+use GuzzleHttp\Client;
 use App\Models\UserWallet;
-use App\Models\UserContact;
-use App\Models\UserProfile;
+use League\ISO3166\ISO3166;
+use App\Services\GeoService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
-  public function registerUser(array $userData): User
+  protected ?User $user = null;
+  public function registerUser(array $userData, GeoService $geoService): User
   {
     try {
       DB::beginTransaction();
+      $ip = getRequestIp();
+      $geo = $geoService->getGeoData($ip);
+      $userData['ip'] = $ip;
 
-      $user = $this->createUser($userData);
+      $this->user = $this->createUser($userData);
 
-      $this->createUserWallet($user);
-      $this->createUserProfile($user);
-      $this->createUserContact($user);
+      $this->createUserWallet();
+      $this->createUserProfile($geo);
+      $this->createUserContact();
 
       DB::commit();
 
-      return $user;
+      return $this->user;
     } catch (\Exception $e) {
       DB::rollBack();
       throw new \Exception(__('Ошибка при создании пользователя: ') . $e->getMessage());
@@ -33,57 +39,40 @@ class UserService
 
   private function createUser(array $userData): User
   {
-    $ip = getRequestIp();
-
     return User::create([
       'login' => $userData['login'],
       'email' => $userData['email'],
-      'ip' => $ip,
+      'ip' => $userData['ip'],
       'ref_code' => $this->generateRefCode(),
       'password' => Hash::make($userData['password']),
     ]);
   }
 
-  private function createUserWallet(User $user)
+  private function createUserWallet()
   {
-    UserWallet::create([
-      'user_id' => $user->id,
-      'account' => $this->generateWalletAccount('VP'),
+    $this->user->wallet()->create([
+      'account' => UserWallet::generateAccount('VP'),
     ]);
   }
 
-  private function createUserProfile(User $user)
+  private function createUserProfile($geo)
   {
-    UserProfile::create([
-      'user_id' => $user->id,
+    $this->user->profile()->create([
+      'country' => $geo->country,
+      'region' => $geo->region,
+      'city' => $geo->city,
     ]);
   }
 
-  private function createUserContact(User $user)
+  private function createUserContact()
   {
-    UserContact::create([
-      'user_id' => $user->id,
-    ]);
+    $this->user->contact()->create([]);
   }
 
   private function generateRefCode(int $length = 8): string
   {
     $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     return $this->generateRandomCode($characters, $length);
-  }
-
-  private function generateWalletAccount($prefix = '', $suffix = '', $length = 8)
-  {
-    $baseValue = (string) (now()->timestamp * 1000);
-    $randomDigits = random_int(1000, 9999);
-
-    $baseValueString = (string) $baseValue;
-    $shuffledBaseValueString = str_shuffle($baseValueString);
-    $suffix = str_shuffle($suffix);
-
-    $uniqueId = substr($shuffledBaseValueString + $randomDigits, 0, $length);
-
-    return $prefix . $uniqueId . $suffix;
   }
 
   private function generateRandomCode($characters, $length)

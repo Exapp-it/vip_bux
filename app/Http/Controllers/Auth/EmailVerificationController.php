@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class EmailVerificationController extends Controller
@@ -26,6 +25,8 @@ class EmailVerificationController extends Controller
   public function verify(EmailVerificationRequest $request)
   {
     $request->fulfill();
+    $user = $request->user();
+    $user->profile->update(['email_verified' => true]);
 
     return redirect()->route('user.index')->with([
       'message' => __('Верификация прошла успешно!'),

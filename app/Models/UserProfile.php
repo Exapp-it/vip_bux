@@ -37,4 +37,9 @@ class UserProfile extends Model
   {
     return $this->belongsTo(User::class, 'user_id');
   }
+
+  public function getGenderReadableAttribute()
+  {
+    return $this->gender === null ? __('Не указан') : ($this->gender == 'male' ? __('Мужской') : __('Женский'));
+  }
 }

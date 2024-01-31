@@ -14,7 +14,7 @@ defineProps({
         <section
             class="relative bg-[url(https://abrakadabra.fun/uploads/posts/2022-02/1644388958_2-abrakadabra-fun-p-zadnii-fon-dlya-saita-2.jpg)] bg-cover bg-no-repeat"
         >
-            <div class="absolute inset-0 bg-black/75 md:bg-transparent"></div>
+            <div class="absolute inset-0 bg-black/75"></div>
             <div class="main-container">
                 <div
                     class="relative mx-auto max-w-screen-xl px-4 py-32 md:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
@@ -54,10 +54,10 @@ defineProps({
 
         <section class="">
             <div class="main-container">
-                <div class="mx-auto max-w-screen-xl px-4 py-12 sm:px-6">
+                <div class="mx-auto max-w-screen-xl lg:px-4 py-12 px-6">
                     <div class="mt-8 sm:mt-12">
                         <dl
-                            class="grid sm:grid-cols-1 md:grid-cols-1 gap-4 grid-cols-3 sm:divide-x-0 md:divide-x-0 divide-x divide-red-600"
+                            class="grid grid-cols-1 gap-4 lg:grid-cols-3 divide-x-0 lg:divide-x divide-red-600"
                         >
                             <div class="flex flex-col px-4 py-8 text-center">
                                 <dt
@@ -66,7 +66,7 @@ defineProps({
                                     Заработано
                                 </dt>
                                 <dd
-                                    class="sm:text-4xl font-extrabold text-gold-1 text-5xl"
+                                    class="text-4xl font-extrabold text-gold-1"
                                 >
                                     1000.00 &#8381;
                                 </dd>
@@ -79,7 +79,7 @@ defineProps({
                                     Всего пользователей
                                 </dt>
                                 <dd
-                                    class="sm:text-4xl font-extrabold text-gold-1 text-5xl"
+                                    class="text-4xl font-extrabold text-gold-1"
                                 >
                                     25,469
                                 </dd>
@@ -92,7 +92,7 @@ defineProps({
                                     Новых за сегодня
                                 </dt>
                                 <dd
-                                    class="sm:text-4xl font-extrabold text-gold-1 text-5xl"
+                                    class="text-4xl font-extrabold text-gold-1"
                                 >
                                     86
                                 </dd>
@@ -106,10 +106,10 @@ defineProps({
         <section class="gradient-gold text-gray-800">
             <div class="main-container">
                 <div
-                    class="max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16"
+                    class="max-w-screen-xl px-6 py-12 lg:px-8 lg:py-16"
                 >
                     <div
-                        class="mt-8 grid sm:grid-cols-1 md:grid-cols-1 gap-8 md:mt-16 md:gap-12 grid-cols-3"
+                        class="mt-8 mb-8 grid grid-cols-1 lg:grid-cols-3 gap-8"
                     >
                         <div class="flex items-start gap-4">
                             <span
@@ -214,10 +214,10 @@ defineProps({
         <section class="text-gold-2">
             <div class="main-container">
                 <div
-                    class="mx-auto max-w-screen-xl px-4 sm:px-6 sm:py-12 lg:px-8 py-16"
+                    class="mx-auto max-w-screen-xl px-6 py-12 lg:px-8"
                 >
                     <div class="mx-auto max-w-lg text-center">
-                        <h2 class="text-3xl font-bold sm:text-4xl">
+                        <h2 class="text-3xl font-bold">
                             Наши преимущества
                         </h2>
                         <p class="mt-4 text-gold-1">
@@ -227,7 +227,7 @@ defineProps({
                     </div>
 
                     <div
-                        class="mt-8 grid sm:grid-cols-1 gap-8 md:grid-cols-2 grid-cols-3"
+                        class="mt-8 grid grid-cols-1 gap-8  lg:grid-cols-3"
                     >
                         <a
                             class="block rounded-xl border border-red-600 p-8 shadow-xl transition hover:border-gold-1/30 hover:shadow-gold-1/30"

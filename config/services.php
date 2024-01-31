@@ -32,6 +32,7 @@ return [
   ],
 
   'ip_info' => [
+    'url' => env('IPINFO_API_URL'),
     'token' => env('IPINFO_API_TOKEN'),
   ],
 

@@ -6,9 +6,9 @@
     <footer class="gradient-gold shadow-2xl">
         <div class="main-container">
             <div
-                class="mx-auto max-w-screen-xl sm:space-y-8 md:px-4 py-16 sm:px-6 space-y-16 px-8"
+                class="mx-auto max-w-screen-xl space-y-8 md:px-4 py-16 sm:px-6 lg:space-y-16 px-8"
             >
-                <div class="grid sm:grid-cols-1 gap-8 grid-cols-3">
+                <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
                     <div>
                         <div class="w-48">
                             <Link :href="route('home.index')">
@@ -146,7 +146,7 @@
                     </div>
 
                     <div
-                        class="grid sm:grid-cols-1 gap-8 md:grid-cols-2 col-span-2 grid-cols-4"
+                        class="grid grid-cols-2 gap-8 col-span-2 lg:grid-cols-4"
                     >
                         <div>
                             <p class="font-medium text-gray-900">Services</p>

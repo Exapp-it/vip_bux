@@ -15,7 +15,7 @@ defineProps({
             <div class="flex items-center justify-between h-20">
                 <MainLogo />
                 <div class="flex items-center space-x-4">
-                    <nav class="sm:hidden">
+                    <nav class="hidden lg:block">
                         <ul class="flex items-center gap-6 text-sm">
                             <li>
                                 <span
@@ -108,7 +108,7 @@ defineProps({
                         </div>
 
                         <button
-                            class="rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 sm:block hidden"
+                            class="rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 block lg:hidden"
                         >
                             <span class="sr-only">Toggle menu</span>
                             <svg

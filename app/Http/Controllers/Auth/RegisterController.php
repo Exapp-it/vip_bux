@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\UserService;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use App\Services\GeoService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Redirect;
@@ -14,12 +15,12 @@ class RegisterController extends Controller
 {
 
 
-  public function store(Request $request, UserService $userService)
+  public function store(Request $request, UserService $userService, GeoService $geoService)
   {
     $this->validateUser($request);
 
     try {
-      $user = $userService->registerUser($request->only(['login', 'email', 'password']));
+      $user = $userService->registerUser($request->only(['login', 'email', 'password']), $geoService);
       event(new Registered($user));
       Auth::login($user);
     } catch (\Exception $e) {

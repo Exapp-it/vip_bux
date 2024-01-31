@@ -17,10 +17,10 @@ const user = page.props.user.data;
             :status="page.props.flash.status"
         />
         <UserHeader :user="user" />
-        <div class="main-container flex gradient-gold my-2 py-2 rounded-lg">
+        <div class="main-container flex gradient-gold my-2 py-2 rounded-lg space-x-4">
             <Sidebar />
 
-            <main class="p-2">
+            <main class="w-full">
                 <slot />
             </main>
         </div>
