@@ -1,4 +1,4 @@
-import "../css/App.css";
+import "../css/app.css";
 import { createApp, h } from "vue";
 import { Link, createInertiaApp, Head } from "@inertiajs/vue3";
 import { ZiggyVue } from "ziggy-js";

@@ -1,5 +1,5 @@
 <script setup>
-import IconFail from "./Icons/Iconfail.vue";
+import IconFail from "./Icons/IconFail.vue";
 import IconSuccess from "./Icons/IconSuccess.vue";
 import { ref } from "vue";
 
