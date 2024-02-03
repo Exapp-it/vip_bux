@@ -13,13 +13,16 @@ use Illuminate\Support\Facades\Hash;
 class UserService
 {
   protected ?User $user = null;
-  public function registerUser(array $userData, GeoService $geoService): User
+  public function registerUser(array $userData, GeoService $geoService, ?User $ref = null): User
   {
     try {
       DB::beginTransaction();
       $ip = getRequestIp();
       $geo = $geoService->getGeoData($ip);
       $userData['ip'] = $ip;
+      $userData['ref_level_1'] = $ref->id;
+      $userData['ref_level_2'] = $ref->ref_level_1;
+      $userData['ref_level_3'] = $ref->ref_level_2;
 
       $this->user = $this->createUser($userData);
 
@@ -43,6 +46,9 @@ class UserService
       'email' => $userData['email'],
       'ip' => $userData['ip'],
       'ref_code' => $this->generateRefCode(),
+      'ref_level_1' => $userData['ref_level_1'],
+      'ref_level_2' => $userData['ref_level_2'],
+      'ref_level_3' => $userData['ref_level_3'],
       'password' => Hash::make($userData['password']),
     ]);
   }
@@ -71,10 +77,10 @@ class UserService
   private function generateRefCode(int $length = 8): string
   {
     $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-    return $this->generateRandomCode($characters, $length);
+    return $this->generateRandomCode($length, $characters);
   }
 
-  private function generateRandomCode($characters, $length)
+  public function generateRandomCode($length = 6, $characters = '0123456789')
   {
     $code = '';
 

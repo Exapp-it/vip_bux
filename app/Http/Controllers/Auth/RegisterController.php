@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Services\Geo\GeoService;
@@ -20,7 +21,8 @@ class RegisterController extends Controller
     $this->validateUser($request);
 
     try {
-      $user = $userService->registerUser($request->only(['login', 'email', 'password']), $geoService);
+      $ref = User::find($request->cookie('ref'));
+      $user = $userService->registerUser($request->only(['login', 'email', 'password']), $geoService, $ref);
       event(new Registered($user));
       Auth::login($user);
     } catch (\Exception $e) {

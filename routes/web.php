@@ -14,6 +14,8 @@ Route::get('/', [HomeController::class, 'index'])
 Route::get('about', [HomeController::class, 'about'])
   ->name('home.about');
 
+  Route::get('invite/{code}', [HomeController::class, 'captureInviteCode']);
+
 //Auth
 Route::middleware('guest')->group(function () {
   Route::post('register', [RegisterController::class, 'store'])
@@ -27,6 +29,12 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
   Route::delete('user/logout', [LoginController::class, 'logout'])
     ->name('user.logout');
+
+  Route::get('user/auth-verify', [LoginController::class, 'authVerifyShow'])
+    ->name('user.auth.verifyShow');
+
+  Route::post('user/auth-verify', [LoginController::class, 'authVerify'])
+    ->name('user.auth.verify');
 
   //Email verify
   Route::get('/email/verify', [EmailVerificationController::class, 'index'])

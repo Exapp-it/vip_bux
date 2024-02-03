@@ -1,15 +1,28 @@
 <?php
 
+
 namespace App\Enums;
 
 use App\Traits\EnumHelpers;
 
-enum UserGender
+enum TransactionOptions
 {
   use EnumHelpers;
 
-  const Male = 'male';
-  const Female = 'female';
+  const types = [
+    "withdrawal",
+    "purchase",
+    "buy",
+    "transfer",
+  ];
+
+  const statuses = [
+    'waiting',
+    'fail',
+    'success',
+  ];
+
+
 
 
   public static function toString(): string
@@ -19,10 +32,6 @@ enum UserGender
 
   public static function readable()
   {
-    return [
-      static::Male => 'Мужской',
-      static::Female => 'Жениский',
-    ];
+    return [];
   }
-
 }

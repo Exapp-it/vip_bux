@@ -24,7 +24,7 @@ const profilePresonalForm = useForm({
     name: user.profile.name,
     lastname: user.profile.lastname,
     birthday: user.profile.birthday,
-    gender: user.profile.gender ?? "null",
+    gender: user.profile.gender,
     occupation: user.profile.occupation,
 });
 
@@ -60,7 +60,7 @@ const changePassword = () => {
 };
 
 const creaetOrUpdatePinCobe = () => {
-  profilePinCodeForm.put(route("user.profile.update.code", user));
+    profilePinCodeForm.put(route("user.profile.update.code", user));
 };
 
 const handleUploadImage = () => {
@@ -214,6 +214,9 @@ const handleUploadImage = () => {
                                         v-model="profilePresonalForm.gender"
                                         class="w-full px-4 py-1 text-gray-800 rounded-full focus:outline-none"
                                     >
+                                        <option selected disabled value="">
+                                            Выбрать...
+                                        </option>
                                         <option
                                             v-for="(label, value) in genders"
                                             :key="value"
@@ -503,9 +506,7 @@ const handleUploadImage = () => {
 
                 <div class="flex space-x-4 mt-10">
                     <div class="w-full">
-                        <h2 class="text-gold-1 font-semibold mb-5">
-                            Пин код
-                        </h2>
+                        <h2 class="text-gold-1 font-semibold mb-5">Пин код</h2>
                         <div class="flex items-center w-full mb-3">
                             <div
                                 class="flex items-center bg-white w-full rounded-lg"
@@ -523,9 +524,7 @@ const handleUploadImage = () => {
                                 </div>
                                 <div class="w-full">
                                     <input
-                                        v-model="
-                                            profilePinCodeForm.code
-                                        "
+                                        v-model="profilePinCodeForm.code"
                                         type="number"
                                         class="w-full px-4 py-1 text-gray-800 rounded-full focus:outline-none"
                                     />

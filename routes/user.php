@@ -3,7 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\MainController;
 use App\Http\Controllers\User\ProfileController;
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'auth.verify'])->group(function () {
   Route::get('', [MainController::class, 'index'])
     ->name('user.index');
 
@@ -23,7 +23,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('password/update/{user}', [ProfileController::class, 'updatePassword'])
       ->name('user.profile.update.password');
 
-      Route::put('code/update/{user}', [ProfileController::class, 'updateCode'])
+    Route::put('code/update/{user}', [ProfileController::class, 'updateCode'])
       ->name('user.profile.update.code');
 
     Route::post('upload/avatar/{user}', [ProfileController::class, 'uploadAvatar'])
