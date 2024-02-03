@@ -1,5 +1,5 @@
 <?php
-namespace App\Services;
+namespace App\Services\Geo;
 
 use GuzzleHttp\Client;
 use League\ISO3166\ISO3166;

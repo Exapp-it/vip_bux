@@ -10,8 +10,8 @@ class Image extends Model
   use HasFactory;
 
   protected $fillable = [
+    'user_id',
     'path',
     'filename',
-    'user_id',
   ];
 }

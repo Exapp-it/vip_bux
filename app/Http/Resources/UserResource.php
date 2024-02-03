@@ -22,6 +22,7 @@ class UserResource extends JsonResource
       'login' => $this->login,
       'points' => $this->experience_points,
       'status' => $this->status_readable,
+      'pin' => $this->pin_code,
       'wallet' => new WalletResource($this->wallet),
       'profile' => new ProfileResource($this->profile),
       'contact' => new ContactResource($this->contact),

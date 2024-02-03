@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Services\GeoService;
+use App\Services\Geo\GeoService;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;

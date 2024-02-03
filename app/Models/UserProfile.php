@@ -17,6 +17,7 @@ class UserProfile extends Model
     'lastname',
     'name',
     'birthday',
+    'avatar',
     'gender',
     'occupation',
     'country',
@@ -38,8 +39,18 @@ class UserProfile extends Model
     return $this->belongsTo(User::class, 'user_id');
   }
 
+  public function image()
+  {
+      return $this->belongsTo(Image::class, 'avatar');
+  }
+
   public function getGenderReadableAttribute()
   {
     return $this->gender === null ? __('Не указан') : ($this->gender == 'male' ? __('Мужской') : __('Женский'));
+  } 
+  
+  public function getAvatarUrlAttribute()
+  {
+        return $this->avatar ? '/storage/' . $this?->image->path : null;
   }
 }

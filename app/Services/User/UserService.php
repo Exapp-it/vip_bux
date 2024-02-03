@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\User;
 
 use App\Models\User;
 use GuzzleHttp\Client;
 use App\Models\UserWallet;
 use League\ISO3166\ISO3166;
-use App\Services\GeoService;
+use App\Services\Geo\GeoService;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 
 class UserService

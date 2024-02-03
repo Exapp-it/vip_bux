@@ -3,13 +3,37 @@
 
 namespace App\Enums;
 
+use App\Traits\EnumHelpers;
+
 enum UserOccupation
 {
-  const schoolStudent = 'School Student';
-  const student = 'Student';
-  const employee = 'Employee';
-  const manager = 'Manager';
-  const offlineBusinessOwner = 'Offline Business Owner';
-  const ITBusinessOwner = 'IT Business Owner';
-  const unemployed = 'Unemployed';
+
+  use EnumHelpers;
+
+
+  const SchoolStudent = 'schoolStudent';
+  const Student = 'student';
+  const Employee = 'employee';
+  const Manager = 'manager';
+  const OfflineBusinessOwner = 'offlineBusinessOwner';
+  const ITBusinessOwner = 'ITBusinessOwner';
+  const Unemployed = 'unemployed';
+
+  public static function toString(): string
+  {
+    return implode(',', static::values());
+  }
+
+  public static function readable()
+  {
+    return [
+      static::SchoolStudent => 'Школьник',
+      static::Student => 'Студент',
+      static::Employee => 'Сотрудник',
+      static::Manager => 'Управляющий',
+      static::OfflineBusinessOwner => 'Владелец офлайн-бизнеса',
+      static::ITBusinessOwner => 'Владелец ИТ-бизнеса',
+      static::Unemployed => 'Безработный',
+    ];
+  }
 }

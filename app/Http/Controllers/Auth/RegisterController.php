@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
-use App\Services\UserService;
 use Illuminate\Validation\Rule;
+use App\Services\Geo\GeoService;
+use App\Services\User\UserService;
 use App\Http\Controllers\Controller;
-use App\Services\GeoService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Redirect;

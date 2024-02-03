@@ -18,16 +18,8 @@ return new class extends Migration {
       $table->string('name')->nullable();
       $table->string('lastname')->nullable();
       $table->date('birthday')->nullable();
-      $table->enum('gender', [UserGender::Male, UserGender::Female])->nullable();
-      $table->enum('occupation', [
-        UserOccupation::schoolStudent,
-        UserOccupation::student,
-        UserOccupation::employee,
-        UserOccupation::manager,
-        UserOccupation::offlineBusinessOwner,
-        UserOccupation::ITBusinessOwner,
-        UserOccupation::unemployed,
-      ])->nullable();
+      $table->enum('gender', UserGender::values())->nullable();
+      $table->enum('occupation', UserOccupation::values())->nullable();
       $table->string('country')->nullable();
       $table->string('region')->nullable();
       $table->string('city')->nullable();

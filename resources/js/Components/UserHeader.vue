@@ -1,29 +1,8 @@
 <script setup>
 import { Link, router } from "@inertiajs/vue3";
 import MainLogo from "./MainLogo.vue";
-import { ref } from "vue";
 
 const { user } = defineProps(["user"]);
-
-
-const userDropdown = ref(false);
-
-let closeTimer;
-
-const openUserDropdown = () => {
-    clearTimeout(closeTimer);
-    userDropdown.value = true;
-};
-
-const closeUserDropdown = () => {
-    closeTimer = setTimeout(() => {
-        userDropdown.value = false;
-    }, 500);
-};
-
-const cancelCloseUserDropdown = () => {
-    clearTimeout(closeTimer);
-};
 
 const logout = () => {
     router.delete(route("user.logout"));
@@ -42,26 +21,23 @@ const logout = () => {
                             class="flex group items-center space-x-4 border border-green-600 rounded-full px-2 py-2 hover:shadow-2xl transition duration-300"
                         >
                             <i
-                                class="bi bi-wallet-fill  text-green-600 text-xl group-hover:rotate-180 transition duration-300"
+                                class="bi bi-wallet-fill text-green-600 text-xl group-hover:rotate-180 transition duration-300"
                             ></i>
-                            <span class="text-gray-700 font-semibold transition duration-300"
+                            <span
+                                class="text-gray-700 font-semibold transition duration-300"
                                 >{{ user.wallet.balance }}
-                                <span class="text-green-600 font-extrabold">&#x20bd;</span>
+                                <span class="text-green-600 font-extrabold"
+                                    >&#x20bd;</span
+                                >
                             </span>
                         </Link>
                     </div>
                     <div class="flex items-center gap-4 pl-5">
                         <div class="flex justify-center items-center">
                             <div
-                                class="relative border-b-4 border-transparent py-3"
-                                :class="{
-                                    'border-stone-900 transform transition duration-300 ':
-                                        userDropdown,
-                                }"
+                                class="relative border-b-4 border-transparent py-3 border-stone-900 transform transition duration-300 group"
                             >
                                 <div
-                                    @mouseover="openUserDropdown"
-                                    @mouseout="closeUserDropdown"
                                     class="flex group justify-center items-center space-x-3 cursor-pointer"
                                 >
                                     <div
@@ -74,7 +50,7 @@ const logout = () => {
                                         />
                                     </div>
                                     <div
-                                        class="font-semibold text-gray-900 text-lg group-hover:scale-90 transition duration-300"
+                                        class="font-semibold text-gray-900 text-lg group-hover:scale-90 transition-all duration-300"
                                     >
                                         <div class="cursor-pointer">
                                             {{ user.login }}
@@ -82,10 +58,7 @@ const logout = () => {
                                     </div>
                                 </div>
                                 <div
-                                    @mouseover="cancelCloseUserDropdown"
-                                    @mouseout="closeUserDropdown"
-                                    v-if="userDropdown"
-                                    class="absolute w-60 px-5 py-3 -right-20 gradient-gold rounded-lg shadow border mt-5 transition duration-300"
+                                    class="invisible absolute w-60 px-5 py-3 -right-20 gradient-gold rounded-lg shadow border mt-5 transition-all duration-300 group-hover:visible"
                                 >
                                     <ul class="space-y-3">
                                         <li class="font-medium">
@@ -102,8 +75,8 @@ const logout = () => {
                                             </Link>
                                         </li>
                                         <li class="font-medium">
-                                            <a
-                                                href="#"
+                                            <Link
+                                                :href="route('user.profile.edit')"
                                                 class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-stone-900 hover:text-gray-600"
                                             >
                                                 <div class="mr-3">
@@ -111,8 +84,8 @@ const logout = () => {
                                                         class="bi bi-gear-wide text-xl"
                                                     ></i>
                                                 </div>
-                                                Настройки
-                                            </a>
+                                                Настройки профиля
+                                            </Link>
                                         </li>
                                         <hr class="border-red-600" />
                                         <li class="font-medium">

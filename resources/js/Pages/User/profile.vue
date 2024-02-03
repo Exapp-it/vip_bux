@@ -3,28 +3,23 @@ import { usePage } from "@inertiajs/vue3";
 import UserLayout from "../../Layouts/UserLayout.vue";
 import IconStar from "../../Components/UI/Icons/IconStar.vue";
 import TooltipWithStatus from "../../Components/UI/TooltipWithStatus.vue";
+import Alert2 from "../../Components/UI/Alert2.vue";
 
 defineProps(["title"]);
 
 const page = usePage();
 const user = page.props.user.data;
-console.log(user);
 </script>
 
 <template>
     <Head :title="title" />
     <UserLayout>
         <div class="max-w-3xl w-full mx-auto grid gap-4 grid-cols-1">
-            <!-- alert -->
-            <div
-                v-if="!user.profile.email_verified"
-                class="flex flex-col justify-center p-4 bg-stone-900 border-red-600 shadow-md hover:shodow-lg rounded-2xl"
-            >
-                <span class="text-red-600 text-xl font-semibold text-center">
-                    Подтвердите свою почту
-                </span>
-            </div>
-            <!-- profile card -->
+            <Alert2
+                :show="!user.profile.email_verified"
+                :message="'Подтвердите свою почту'"
+                :status="'error'"
+            />
             <div class="flex flex-col">
                 <div
                     class="bg-stone-900 border border-red-600 shadow-lg rounded-2xl p-4"
@@ -165,12 +160,12 @@ console.log(user);
                                     </svg>
                                     <p class="">14 Components</p>
                                 </div>
-                                <a
-                                    href="#"
+                                <Link
+                                    :href="route('user.profile.edit')"
                                     class="inline-block rounded gradient-gold px-6 py-2 text-sm font-medium text-gray-800 transition duration-500 hover:scale-110 focus:outline-none focus:ring focus:ring-gold-2"
                                 >
                                     Редактировать
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
